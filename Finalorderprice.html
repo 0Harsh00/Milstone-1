@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   <form action="">
+    <label for="item">
+        <input type="text" placeholder="item" id="itemName">
+    </label>
+    <label for="item-price">
+        <input type="text" placeholder="item-Pice" id="itemPrice">
+    </label>
+    <label for="quantity">
+        <input type="text" placeholder="Enter Quantiy" id="quantity">
+    </label>
+    <button id="btnadd" >Add</button>
+    <div class="cart"></div>
+
+    <button id="btn">check</button>
+    <h1 id="result"></h1>
+   </form>
+   <script>
+        const itemname = document.getElementById("itemName");
+        const itemprice = document.getElementById("itemPrice");
+        const quantity = document.getElementById("quantity");
+        const btnadd = document.getElementById("btnadd");
+        const btn = document.getElementById("btn");
+        const result = document.getElementById("result");
+        const cartElement = document.querySelector(".cart")
+
+        const customerCart = [];
+
+        const customerobj = (itemname,itemprice,quantity)=>{
+       const obj = {
+            itemname,
+            itemprice,
+            quantity,
+            Total:itemprice*quantity,
+       };return obj;
+        }
+
+         btnadd.addEventListener("click",(e)=>{
+            e.preventDefault();
+           if(itemname.value ,itemprice.value, quantity.value){
+            const cartitem = customerobj(
+                itemname.value,
+                Number(itemprice.value),
+                Number(quantity.value),
+            );
+            customerCart.push(cartitem);
+            itemname.value = " ",
+            itemprice.value = " ",
+            quantity.value = " ",
+            
+            cartElement.innerHTML = JSON.stringify(customerCart); 
+           }
+         })
+
+         btn.addEventListener("click" , (e) => {
+    e.preventDefault();
+    let finalBiiling = 0;
+    customerCart.forEach((item) => {
+        finalBiiling += item.Total;
+
+    });
+    result.innerText = "Total price is : " + finalBiiling;
+});
+        
+   </script>
+</body>
+</html>

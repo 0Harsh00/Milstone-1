@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head> <!-- code pura nhi hua hai -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bill-spilter</title>
+</head>
+<body>
+    <div class="wraper">
+        <form action="">
+            <label for="Dish-Name"></label>
+            <input type="text" id="dish-name" placeholder="dish-name">
+
+            <label for="Dish-Price"></label>
+            <input type="text" id="Dish-Price" placeholder="dish-price">
+
+            <label for="number of pepole sharing"></label>
+            <input type="text " id="price-sharing" placeholder="no of people">
+
+            <button type="submit" id="btn">check Price</button>
+
+            <h4 id="result"></h4>
+
+        </form>
+    </div>
+    <script>
+        const dishname = document.querySelector("#dish-name");
+        const dishprice = document.querySelector("#Dish-Price");
+        const pepole = document.getElementById("price-sharing");
+        const btn = document.getElementById("btn");
+        const result = document.getElementById("result");
+
+        const myfinalobj = (dishname , dishprice ,pepole)=>{
+            const resturentobj = {
+                dish:dishname,
+                dishprice:dishprice,
+                priceSharing:dishprice /pepole,
+                pepole:pepole,
+            };return resturentobj
+        }
+        btn.addEventListener("click",(e)=>{
+            e.preventDefault();
+            if(dishname.value && dishprice.value && pepole.value){
+                const resturentbill = myfinalobj(
+                     dishname.value,
+                     Number(dishprice.value),
+                     Number(pepole.value),
+                );
+                result.innerText = `"final cost:" ${JSON.stringify(resturentbill) }`
+            }
+        })
+    </script>
+</body>
+</html>

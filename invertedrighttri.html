@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>pattern-tring</title>
+  </head>
+  <body>
+    <main>
+      <div class="wrapper">
+        <form class="box">
+          <h1>Star Pattern</h1>
+          <label for="user-input">Enter the number of Rows</label>
+          <input
+            type="number"
+            id="user-input"
+            name="name"
+            class="inp"
+            placeholder="Enter Here.."
+          />
+          <button class="btn" id="submit-btn">Print Pattern</button>
+          <p>Pattern:</p>
+          <div class="result"></div>
+        </form>
+      </div>
+    </main>
+    <script>
+      const inp = document.querySelector(".inp");
+      const button = document.querySelector(".btn");
+      const result = document.querySelector(".result");
+
+      let ans = "";
+      button.addEventListener("click", (e) => {
+        e.preventDefault();
+        for (let i = 0; i < Number(inp.value); i++) {
+          for (let j = Number(inp.value); j > i; j--) {
+            ans += "*";
+          }
+          ans += "<br>" ;              
+        }
+        result.innerHTML = ans ;
+      });
+    </script>
+  </body>
+</html>

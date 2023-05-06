@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>unit conventer</title>
+    <style>
+        .wrap{
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>unit coverter</h1>
+    <div class="wrap">
+        <input type="number" id="celcius">
+        <p>celcius</p>
+        <button id="btn">Convert</button>
+        <h2 id="result"></h2>
+        <span>Fahrnheit</span>
+    </div>
+    <script>
+    
+        // const celcius = (document.getElementById("celciuse"))
+        // console.log(celcius);
+        // const Fahrnheit  = Math.floor((celcius*1.8)+32)
+        // console.log(Fahrnheit);
+        const celcius = parseInt(document.getElementById("celcius"));
+        function converter(e){
+            e.preventDefault(celcius);
+            const result = document.getElementById("result");
+            const Fahrnheit  = (celcius*(1.8+32));
+            console.log(celcius);
+            result.innerText = Fahrnheit;
+        }
+        document.getElementById("btn").addEventListener("click",converter)
+    </script>
+</body>
+</html>

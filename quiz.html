@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body style="background-color: #000; color: aliceblue">
+    <h1>This is Quiz Time</h1>
+
+    <div id="quiz"></div>
+    <button id="submit">submit</button>
+
+    <div id="result"></div>
+
+    <!-- java-sc -->
+    <script>
+      const quiz = document.getElementById("quiz");
+      const submit = document.getElementById("submit");
+      const results = document.getElementById("result");
+
+      const myQuestions = [
+        {
+          question: "What is the currency of japan?",
+          answer: {
+            a: "Ruppes",
+            b: "Dollar",
+            c: "yean",
+            d: "None",
+          },
+          correctAnswer: "c",
+        },
+        {
+          question: "What is the Capital of japan",
+          answer: {
+            a: "Tokyo",
+            b: "Hirosima",
+            c: "Doha",
+            d: "Dhaka",
+          },
+          correctAnswer: "a",
+        },
+        {
+          question: "Who is Mahtma gandhi?",
+          answer: {
+            a: "Harmi",
+            b: "Mauga",
+            c: "Dumb",
+            d: "Lampat",
+          },
+          correctAnswer: "d",
+        },
+        {
+          question: "Which one of the following religon of nehru ?",
+          answer: {
+            a: "Hindu",
+            b: "Sikh",
+            c: "Muslium",
+            d: "Parsi",
+          },
+          correctAnswer: "c",
+        },
+      ];
+      function builtQuiz() {
+        const output = [];
+
+        myQuestions.forEach((currentquestion, questionNumber) => {
+          const answer = [];
+          for (letters in currentquestion.answer) {
+            answer.push(`<label><input type="radio"name="question${questionNumber}"value="${letters}"/>${letters}:${currentquestion.answer[letters]}</label>`);
+          }
+          //console.log(answer);
+          output.push(
+            `<div class="questions">${currentquestion.question}</div> <div class="answer">${answer.join(" ")}`);
+        });
+        //console.log(output);
+        quiz.innerHTML= output.join(" ")
+      }
+       function result() {
+        const answerContainers= quiz.querySelectorAll(".answer");
+
+        let numCorrect =0;
+        myQuestions.forEach((currentquestion,questionNumber)=>{
+            const answerContainer = answerContainers[questionNumber];
+            const selectors = `input[name=question${questionNumber}]:checked`    
+            const userAnswer = (answerContainer.querySelector(selectors)|| {}).value;
+            if(userAnswer===currentquestion.correctAnswer){
+                numCorrect++
+                answerContainers[questionNumber].style.color="green"
+            }else{
+                answerContainers[questionNumber].style.color="red"    
+            }
+            results.innerText = `${numCorrect} out of ${myQuestions.length}`
+        })
+       
+       }
+      builtQuiz();
+
+      //  adding event listner
+       submit.addEventListener("click", result);
+    </script>
+  </body>
+</html>

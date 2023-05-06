@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PasswordValidator</title>
+    <!-- writinng inner c.s.s -->
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+      input {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-top: 6px;
+        margin-bottom: 16px;
+      }
+      label {
+        font-size: 18px;
+        font-weight: 400;
+      }
+
+      input[type="submit"] {
+        width: 40%;
+        margin-left: 29%;
+        background-color: #04aa6d;
+        color: #fff;
+        cursor: pointer;
+      }
+      input[type="submit"]:hover {
+        transform: translatey(5%);
+      }
+      .conatiner {
+        margin-top: 20px;
+        background-color: #f1f1f1;
+        padding: 20px;
+      }
+      #message {
+        display: none;
+        background: #f1f1f1;
+        box-sizing: border-box;
+        /* width: 35%;  */
+        padding: 12px 22px;
+        position: relative;
+        /* text-align: center; */
+        margin-top: 2rem;
+      }
+      #message p {
+        padding: 10px 35px;
+        font-size: 18px;
+      }
+      .valid {
+        color: green;
+      }
+      .valid:before {
+        position: relative;
+        left: -35px;
+        content: "✔";
+      }
+      /* Add red colour and "x" when the requorment are wrong */
+      .invalid {
+        color: red;
+      }
+      .invalid:before {
+        position: relative;
+        left: -35px;
+        content: "X";
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Project - 1</h1>
+    <h2>Password-Validator</h2>
+    <div class="conatiner">
+      <form action="">
+        <label for="usrname">username</label>
+        <input
+          type="text"
+          title="username"
+          name="username"
+          id="username"
+          required
+        />
+
+        <label for="pswd">Password</label>
+        <input
+          type="text"
+          name="pwd"
+          id="pswd"
+          title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
+          pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+          required
+        />
+        <input type="submit" title="submit" value="submit" />
+      </form>
+    </div>
+    <!-- invalid pswd  message-->
+    <div id="message">
+      <h3>Password must contain the following:</h3>
+      <p id="capital" class="invalid">A <b>upperCase</b> letter</p>
+      <p id="smaller" class="invalid">A <b>lowerCase</b> letter</p>
+      <p id="digite" class="invalid">A <b>Digit</b></p>
+      <p id="mindigit" class="invalid">Minimum <b>8 Chracter</b></p>
+    </div>
+    <!-- some java-script is neded -->
+    <script>
+      let myinput = document.getElementById("pswd");
+      let capital = document.getElementById("capital");
+      let smaller = document.getElementById("smaller");
+      let digit = document.getElementById("digite");
+      let mindigit = document.getElementById("mindigit");
+      //   when user clicks pasword the hidden section appears displaying message
+      myinput.onfocus = () => {
+        document.getElementById("message").style.display = "block";
+      };
+      // when user click outside the pswd
+      myinput.onblur = () => {
+        document.getElementById("message").style.display = "none";
+      };
+
+      //when user write inside pasword field
+      myinput.onkeyup = () => {
+        let upperCaseletters = /[A-Z]/g;
+        if (myinput.value.match(upperCaseletters)) { // value property return a string reflecting html 
+          capital.classList.remove("invalid"); 
+          capital.classList.add("valid");
+        } else {
+          capital.classList.remove("valid");
+          capital.classList.add("invalid");
+        }
+        // second
+        let lowerCaseletters = /[a-z]/g;
+        if (myinput.value.match(lowerCaseletters)) {
+          smaller.classList.remove("invalid");
+          smaller.classList.add("valid");
+        } else {
+          smaller.classList.remove("valid");
+          smaller.classList.add("invalid");
+        }
+        let digitnumber = /[0-9]/g;
+      if (myinput.value.match(digitnumber)) {
+        digit.classList.remove("invalid");
+        digit.classList.add("valid");
+      } else {
+        digit.classList.remove("valid");
+        digit.classList.add("invalid");
+      }
+
+      if(myinput.value.length >=8){
+        mindigit.classList.remove("invalid")
+        mindigit.classList.add("valid")
+      }else{
+        mindigit.classList.remove("valid")
+        mindigit.classList.add("invalid")
+      }
+    }
+   
+    </script>
+  </body>
+</html>

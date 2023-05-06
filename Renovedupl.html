@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <section class="main-section hero section">
+        <form class="box">
+            <h1>Removes Duplicates</h1>
+            <label for="user-input">Enter your item</label>
+            <input type="text" id="user-input" placeholder="Enter Here..">
+            <button class="btn" id="submit-btn">Add To Cart</button>
+            <div><span id="result"></span></div>
+        </form>
+    </section>
+    <script>
+        let item_container = [];
+        function removeDup(event){
+            event.preventDefault();
+            let item = document.getElementById("user-input")
+            if(!item){
+                alert("Enter an item")
+            }
+            if(!item_container.includes(item)){
+                item_container.push(item)
+                alert("Items added sucessfuly")
+            }else{
+                alert("Items already accesed")
+            }
+        }
+        document.getElementById("submit-btn").addEventListener("click",(e)=>{
+            
+        })
+    </script>
+ 
+</html>
